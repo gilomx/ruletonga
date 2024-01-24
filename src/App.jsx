@@ -5,10 +5,13 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [users, setUsers] =useState([])
+
+  
 
   return (
     <>
-      <div>
+      {/* <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
@@ -26,8 +29,8 @@ function App() {
         </p>
       </div>
       <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+        Click on the Vite and rosa logos to learn more
+      </p> */}
     </>
   )
 }
