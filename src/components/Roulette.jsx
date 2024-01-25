@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import './../styles/roulette.css'
+import Logo from '../assets/logoGilo.png'
 
 function Roulette() {
   const sectors = [
@@ -49,7 +50,7 @@ function Roulette() {
     function rotate() {
       const sector = sectors[getIndex()];
       canvas.style.transform = `rotate(${ang - PI / 2}rad)`;
-      spinRef.current.textContent = !angVel ? 'SPIN' : sector.label;
+      spinRef.current.textContent = sector.label;
       spinRef.current.style.background = sector.color;
     }
 
@@ -84,7 +85,9 @@ function Roulette() {
   return (
     <div id="wheelOfFortune">
       <canvas ref={canvasRef} id="wheel" width="500" height="500"></canvas>
-      <div ref={spinRef} id="spin"> </div>
+      <div ref={spinRef} id="spin"> 
+      {/* <img src={Logo} alt="Logo" /> */}
+      </div>
   </div>
   );
 }

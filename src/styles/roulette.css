@@ -9,7 +9,7 @@
   }
   
   #spin {
-    font: 1.5em/0 sans-serif;
+    font: 1em/0 sans-serif;
     user-select: none;
     cursor: pointer;
     display: flex;
@@ -21,11 +21,15 @@
     width: 30%;
     height: 30%;
     margin: -15%;
-    background: #fff;
+    background: #cd07ff;
     color: #fff;
     box-shadow: 0 0 0 8px currentColor, 0 0px 15px 5px rgba(0, 0, 0, 0.6);
     border-radius: 50%;
     transition: 0.8s;
+    /* background-image: url('../assets/logoGilo.png') ;
+    background-size:80%;
+    background-repeat:no-repeat;
+    background-position: center; */
   }
   
   #spin::after {
