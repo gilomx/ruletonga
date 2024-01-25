@@ -4,10 +4,13 @@ import Logo from '../assets/logoGilo.png'
 
 function Roulette() {
   const sectors = [
-    { color: '#f82', label: 'Stack' },
-    { color: '#0bf', label: '10cueritos_guangos' },
-    { color: '#0b2', label: 'ElChilpayate200' },
-    { color: '#0a7', label: 'ElCochinomg' },
+    { color: '#DC84F3', label: 'OrlandoGN' },
+    { color: '#0bf', label: 'yeiandjake' },
+    { color: '#0b2', label: 'Success47tv' },
+    { color: '#f82', label: 'ElCochinomg' },
+    { color: '#FF6868', label: 'Lechuga_Numeritos' },
+    { color: '#FFBB64', label: 'ElMocsi' },
+    { color: '#83C0C1', label: 'ElFurro' },
     // ... otros sectores ...
   ];
   const canvasRef = useRef(null);
@@ -42,7 +45,7 @@ function Roulette() {
       ctx.rotate(angle + arc / 2);
       ctx.textAlign = 'right';
       ctx.fillStyle = '#fff';
-      ctx.font = 'bold 12px sans-serif';
+      ctx.font = 'bold 14px sans-serif';
       ctx.fillText(sector.label, rad - 10, 10);
       ctx.restore();
     }
@@ -50,7 +53,7 @@ function Roulette() {
     function rotate() {
       const sector = sectors[getIndex()];
       canvas.style.transform = `rotate(${ang - PI / 2}rad)`;
-      spinRef.current.textContent = sector.label;
+      // spinRef.current.innerHTML = sector.label;
       spinRef.current.style.background = sector.color;
     }
 
@@ -86,7 +89,7 @@ function Roulette() {
     <div id="wheelOfFortune">
       <canvas ref={canvasRef} id="wheel" width="500" height="500"></canvas>
       <div ref={spinRef} id="spin"> 
-      {/* <img src={Logo} alt="Logo" /> */}
+        <img class="wheelLogo" src={Logo} alt="Logo" />
       </div>
   </div>
   );
