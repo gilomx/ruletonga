@@ -13,6 +13,7 @@ function Roulette() {
     { color: '#83C0C1', label: 'ElFurro' },
     // ... otros sectores ...
   ];
+  
   const canvasRef = useRef(null);
   const spinRef = useRef(null);
 
