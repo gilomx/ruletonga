@@ -5,10 +5,11 @@ import Logo from '../assets/logoGilo.png'
 function Roulette({users}) {
 
   const colors = [
+    '#711DB0',
     '#FFC996',
     '#FF8474',
     '#9F5F80',
-    '#9F5F80',
+    '#583D72',
     '#FFC947'
   ]
 
@@ -23,7 +24,7 @@ function Roulette({users}) {
   //   // ... otros sectores ...
   // ];
   const isUsersEmpty = Object.keys(users).length === 0;
-  const sectors = isUsersEmpty ? [{ userName: '', color: '#9d25fe'}] : users
+  const sectors = isUsersEmpty ? [{ userName: ''}] : users
 
   // useEffect(() => {
   //   // Lógica que se ejecutará cuando `users` cambie
@@ -58,23 +59,23 @@ function Roulette({users}) {
 
     const getIndex = () => Math.floor(sectors.length - (ang / TAU) * sectors.length) % sectors.length;
 
-    function drawSector(sector, i) {
-      const angle = arc * i;
-      ctx.save();
-      ctx.beginPath();
-      ctx.fillStyle = sector.color;
-      ctx.moveTo(rad, rad);
-      ctx.arc(rad, rad, rad, angle, angle + arc);
-      ctx.lineTo(rad, rad);
-      ctx.fill();
-      ctx.translate(rad, rad);
-      ctx.rotate(angle + arc / 2);
-      ctx.textAlign = 'right';
-      ctx.fillStyle = '#fff';
+    function drawSector(sector, i, color) {
+      const angle = arc * i
+      ctx.save()
+      ctx.beginPath()
+      ctx.fillStyle = color
+      ctx.moveTo(rad, rad)
+      ctx.arc(rad, rad, rad, angle, angle + arc)
+      ctx.lineTo(rad, rad)
+      ctx.fill()
+      ctx.translate(rad, rad)
+      ctx.rotate(angle + arc / 2)
+      ctx.textAlign = 'right'
+      ctx.fillStyle = '#fff'
       // ctx.strokeStyle ='#fff'
-      ctx.font = 'bold 14px sans-serif';
-      ctx.fillText(sector.userName, rad - 10, 10);
-      ctx.restore();
+      ctx.font = 'bold 14px sans-serif'
+      ctx.fillText(sector.userName, rad - 10, 10)
+      ctx.restore()
     }
 
     function rotate() {
@@ -90,18 +91,21 @@ function Roulette({users}) {
       if (angVel < 0.002) angVel = 0; // Bring to stop
       ang += angVel; // Update angle
       ang %= TAU; // Normalize angle
-      rotate();
+      rotate() 
     }
 
     function engine() {
-      frame();
+      frame()
       requestAnimationFrame(engine);
     }
 
     sectors.forEach((sector, i) => {
-      drawSector(sector, i)
+      let colorIndex = i % 5
+      let color = colors[colorIndex]
+      sector.color = color;
+      drawSector(sector, i, color)
     });
-    
+
     engine(); // Start engine
 
     const spin = () => {
