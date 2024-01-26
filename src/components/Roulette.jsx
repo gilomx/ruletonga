@@ -3,6 +3,15 @@ import './../styles/roulette.css'
 import Logo from '../assets/logoGilo.png'
 
 function Roulette({users}) {
+
+  const colors = [
+    '#FFC996',
+    '#FF8474',
+    '#9F5F80',
+    '#9F5F80',
+    '#FFC947'
+  ]
+
   // const sectors = [
   //   { color: '#DC84F3', label: 'OrlandoGN' },
   //   { color: '#0bf', label: 'yeiandjake' },
@@ -89,7 +98,10 @@ function Roulette({users}) {
       requestAnimationFrame(engine);
     }
 
-    sectors.forEach((sector, i) => drawSector(sector, i));
+    sectors.forEach((sector, i) => {
+      drawSector(sector, i)
+    });
+    
     engine(); // Start engine
 
     const spin = () => {

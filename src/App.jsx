@@ -7,6 +7,7 @@ function App() {
   // const [count, setCount] = useState(0)
 
   const [users, setUsers] =useState([])
+
   // const [users, setUsers] =useState([
   //   { color: '#DC84F3', label: 'OrlandoGN' },
   //   { color: '#0bf', label: 'yeiandjake' },
@@ -43,7 +44,7 @@ function App() {
 
       if(message.toLowerCase() === '!participar') {
         console.log(tags);
-        setUsers(users => [...users, { userName: tags['display-name'], color: tags.color }]);
+        setUsers(users => [...users, { userName: tags['display-name']}]);
         tmiClient.current.say(channel, `@${tags.username}, Listo, ya estás participando :)`);
         console.log("user agregado")
         console.log(users)
@@ -54,6 +55,13 @@ function App() {
       tmiClient.current.disconnect();
     };
   }, []);
+  
+  const selectColor = () => {
+    // Si no hay usuarios, simplemente elige un color aleatorio y retorna
+    const randomIndex = Math.floor(Math.random() * colors.length);
+    return colors[randomIndex];
+    return randomColor; // Devuelve un color válido
+  };
 
   return (
     <>
