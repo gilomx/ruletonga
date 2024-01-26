@@ -5,7 +5,17 @@ import Tmi from "tmi.js";
 
 function App() {
   // const [count, setCount] = useState(0)
+
   const [users, setUsers] =useState([])
+  // const [users, setUsers] =useState([
+  //   { color: '#DC84F3', label: 'OrlandoGN' },
+  //   { color: '#0bf', label: 'yeiandjake' },
+  //   { color: '#0b2', label: 'Success47tv' },
+  //   { color: '#f82', label: 'ElCochinomg' },
+  //   { color: '#FF6868', label: 'Lechuga_Numeritos' },
+  //   { color: '#FFBB64', label: 'ElMocsi' },
+  //   { color: '#83C0C1', label: 'ElFurro' }
+  // ])
   const channelRef = useRef();
 
   const tmiClient = useRef(
@@ -30,6 +40,15 @@ function App() {
         console.log(tags);
         tmiClient.current.say(channel, `@${tags.username}, Que pues!`);
       }
+
+      if(message.toLowerCase() === '!participar') {
+        console.log(tags);
+        setUsers(users => [...users, { label: tags['display-name'], color: tags.color }]);
+        tmiClient.current.say(channel, `@${tags.username}, Listo, ya estás participando :)`);
+        console.log("user agregado")
+        console.log(users)
+      }
+
     });
     return () => {
       tmiClient.current.disconnect();
@@ -38,7 +57,7 @@ function App() {
 
   return (
     <>
-      <Roulette />
+      <Roulette users={users} />
     </>
   )
 }

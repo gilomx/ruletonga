@@ -2,17 +2,33 @@ import React, { useEffect, useRef } from 'react';
 import './../styles/roulette.css'
 import Logo from '../assets/logoGilo.png'
 
-function Roulette() {
-  const sectors = [
-    { color: '#DC84F3', label: 'OrlandoGN' },
-    { color: '#0bf', label: 'yeiandjake' },
-    { color: '#0b2', label: 'Success47tv' },
-    { color: '#f82', label: 'ElCochinomg' },
-    { color: '#FF6868', label: 'Lechuga_Numeritos' },
-    { color: '#FFBB64', label: 'ElMocsi' },
-    { color: '#83C0C1', label: 'ElFurro' },
-    // ... otros sectores ...
-  ];
+function Roulette({users}) {
+  // const sectors = [
+  //   { color: '#DC84F3', label: 'OrlandoGN' },
+  //   { color: '#0bf', label: 'yeiandjake' },
+  //   { color: '#0b2', label: 'Success47tv' },
+  //   { color: '#f82', label: 'ElCochinomg' },
+  //   { color: '#FF6868', label: 'Lechuga_Numeritos' },
+  //   { color: '#FFBB64', label: 'ElMocsi' },
+  //   { color: '#83C0C1', label: 'ElFurro' },
+  //   // ... otros sectores ...
+  // ];
+  const isUsersEmpty = Object.keys(users).length === 0;
+  const sectors = isUsersEmpty ? [{ color: '#9d25fe', label: ''}] : users
+
+  // useEffect(() => {
+  //   // Lógica que se ejecutará cuando `users` cambie
+  //   console.log('La prop users ha cambiado:', users);
+    
+  //   // Aquí puedes añadir cualquier lógica adicional que necesites
+  //   // para manejar el cambio en la prop `users`
+
+  // }, [sectors]);
+
+  
+  console.log(isUsersEmpty)
+  console.log(sectors)
+  console.log(users)
   
   const canvasRef = useRef(null);
   const spinRef = useRef(null);
@@ -84,7 +100,7 @@ function Roulette() {
     return () => {
       spinRef.current.removeEventListener('click', spin);
     };
-  }, []);
+  }, [users]);
 
   return (
     <div id="wheelOfFortune">
