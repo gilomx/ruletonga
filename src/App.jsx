@@ -43,7 +43,7 @@ function App() {
 
       if(message.toLowerCase() === '!participar') {
         console.log(tags);
-        setUsers(users => [...users, { label: tags['display-name'], color: tags.color }]);
+        setUsers(users => [...users, { userName: tags['display-name'], color: tags.color }]);
         tmiClient.current.say(channel, `@${tags.username}, Listo, ya estás participando :)`);
         console.log("user agregado")
         console.log(users)

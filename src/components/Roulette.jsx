@@ -14,7 +14,7 @@ function Roulette({users}) {
   //   // ... otros sectores ...
   // ];
   const isUsersEmpty = Object.keys(users).length === 0;
-  const sectors = isUsersEmpty ? [{ color: '#9d25fe', label: ''}] : users
+  const sectors = isUsersEmpty ? [{ userName: '', color: '#9d25fe'}] : users
 
   // useEffect(() => {
   //   // Lógica que se ejecutará cuando `users` cambie
@@ -62,15 +62,16 @@ function Roulette({users}) {
       ctx.rotate(angle + arc / 2);
       ctx.textAlign = 'right';
       ctx.fillStyle = '#fff';
+      // ctx.strokeStyle ='#fff'
       ctx.font = 'bold 14px sans-serif';
-      ctx.fillText(sector.label, rad - 10, 10);
+      ctx.fillText(sector.userName, rad - 10, 10);
       ctx.restore();
     }
 
     function rotate() {
       const sector = sectors[getIndex()];
       canvas.style.transform = `rotate(${ang - PI / 2}rad)`;
-      // spinRef.current.innerHTML = sector.label;
+      // spinRef.current.innerHTML = sector.userName;
       spinRef.current.style.background = sector.color;
     }
 
