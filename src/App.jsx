@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import './App.css'
 import Roulette from './components/Roulette'
 import Tmi from "tmi.js";
@@ -18,6 +18,23 @@ function App() {
     })
   );
   
+  //Listen Chat
+  useEffect(() => {
+    tmiClient.current.connect();
+    // console.log(import.meta.env.VITE_TWITCH_USERNAME)
+    tmiClient.current.on("message", (channel, tags, message, self) => {
+      // if (self) return;
+      channelRef.current = channel;
+
+      if(message.toLowerCase() === '!hola') {
+        console.log(tags);
+        tmiClient.current.say(channel, `@${tags.username}, Que pues!`);
+      }
+    });
+    return () => {
+      tmiClient.current.disconnect();
+    };
+  }, []);
 
   return (
     <>

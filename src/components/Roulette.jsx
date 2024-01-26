@@ -90,7 +90,7 @@ function Roulette() {
     <div id="wheelOfFortune">
       <canvas ref={canvasRef} id="wheel" width="500" height="500"></canvas>
       <div ref={spinRef} id="spin"> 
-        <img class="wheelLogo" src={Logo} alt="Logo" />
+        <img className="wheelLogo" src={Logo} alt="Logo" />
       </div>
   </div>
   );
