@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion } from "framer-motion"
 import './../styles/roulette.css'
 import Logo from '../assets/logoGilo.png'
 
@@ -12,6 +13,7 @@ function Roulette({users}) {
     '#583D72',
     '#FFC947'
   ]
+  const [winner, setWinner] = useState("")
 
   // const sectors = [
   //   { color: '#DC84F3', label: 'OrlandoGN' },
@@ -81,7 +83,7 @@ function Roulette({users}) {
     function rotate() {
       const sector = sectors[getIndex()];
       canvas.style.transform = `rotate(${ang - PI / 2}rad)`;
-      // spinRef.current.innerHTML = sector.userName;
+      setWinner(sector.userName)
       spinRef.current.style.background = sector.color;
     }
 
@@ -120,12 +122,22 @@ function Roulette({users}) {
   }, [users]);
 
   return (
-    <div id="wheelOfFortune">
-      <canvas ref={canvasRef} id="wheel" width="500" height="500"></canvas>
-      <div ref={spinRef} id="spin"> 
-        <img className="wheelLogo" src={Logo} alt="Logo" />
-      </div>
-  </div>
+    <>
+      <div id="wheelOfFortune">
+      {winner!="" &&
+        <motion.div className='winner'
+          initial={{ x:"-50%", y: 100, opacity: 0 }}
+          animate={{ x:"-50%", y: -20, opacity: 1 }}
+          exit={{ x:"-50%", y: -100, opacity: 0 }}
+          >{winner}
+        </motion.div>
+      }
+          <canvas ref={canvasRef} id="wheel" width="500" height="500"></canvas>
+          <div ref={spinRef} id="spin"> 
+            <img className="wheelLogo" src={Logo} alt="Logo" />
+          </div>
+      </div>    
+    </>
   );
 }
 
