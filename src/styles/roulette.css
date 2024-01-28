@@ -59,8 +59,7 @@
     background-color: #9c25fe57;
     z-index: 2;
     left: 50%;
-    transform: translateX(-50%)
-    /* text-align: center; */
+    transform: translateX(-50%);
   }
 
   .hide{

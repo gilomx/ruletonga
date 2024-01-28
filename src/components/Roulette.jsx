@@ -83,16 +83,20 @@ function Roulette({users}) {
     function rotate() {
       const sector = sectors[getIndex()];
       canvas.style.transform = `rotate(${ang - PI / 2}rad)`;
-      setWinner(sector.userName)
+      
       spinRef.current.style.background = sector.color;
     }
 
     function frame() {
+      const sector = sectors[getIndex()];
       if (!angVel) return;
       angVel *= friction; // Decrement velocity by friction
       if (angVel < 0.002) angVel = 0; // Bring to stop
       ang += angVel; // Update angle
       ang %= TAU; // Normalize angle
+      if(angVel == 0){
+        setWinner(sector.userName)
+      }
       rotate() 
     }
 
@@ -112,6 +116,7 @@ function Roulette({users}) {
 
     const spin = () => {
       if (!angVel) angVel = rand(0.25, 0.45);
+      setWinner("")
     };
 
     spinRef.current.addEventListener('click', spin);
