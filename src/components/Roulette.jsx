@@ -107,7 +107,13 @@ function Roulette({users}) {
 
     sectors.forEach((sector, i) => {
       let colorIndex = i % 5
-      let color = colors[colorIndex]
+      let color = null
+      if(Object.is(sectors.length - 1, i) && colorIndex === 0 ){
+        color = colors[colorIndex + 1]
+        console.log("igual")
+      }else{
+        color = colors[colorIndex]
+      }
       sector.color = color;
       drawSector(sector, i, color)
     });
