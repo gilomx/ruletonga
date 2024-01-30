@@ -31,7 +31,7 @@ function App() {
   );
   
   const userExists = (userName) => {
-    return users.some(user => user.userName === userName);
+    return usersRef.current.some(user => user.userName === userName)
   }
   
   //Listen Chat
@@ -46,11 +46,10 @@ function App() {
         console.log(tags);
         tmiClient.current.say(channel, `@${tags.username}, Que pues!`);
       }
-
       if(message.toLowerCase() === '!participar') {
         let userName = tags['display-name'] + Math.floor(Math.random() * 5)
 
-        if(!usersRef.current.some(user => user.userName === userName)){
+        if(!userExists(userName)){
           setUsers(users => [...users, { userName: userName}]);
           tmiClient.current.say(channel, `@${tags.username}, Listo, ya estás participando :)`);
           console.log("user agregado")
